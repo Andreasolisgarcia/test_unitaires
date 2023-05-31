@@ -14,10 +14,13 @@ class Item {
     }
     updateQuality() {
       // pour chaque item dans l'array de class SHOP
-      //premier test
+     
       for (var i = 0; i < this.items.length; i++) {
+         //Tous les items sauf 'Aged Brie' & 'Backstage passes to a TAFKAL80ETC concert'
         if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
+          
           if (this.items[i].quality > 0) {
+            // touts les items sauf ..
             if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
               this.items[i].quality = this.items[i].quality - 1;
             }
@@ -56,6 +59,7 @@ class Item {
               this.items[i].quality = this.items[i].quality - this.items[i].quality;
             }
           } else {
+            // "Aged Brie" augmente sa qualité (quality) plus le temps passe, mais la qualité tombe à 0 après le concert.
             if (this.items[i].quality < 50) {
               this.items[i].quality = this.items[i].quality + 1;
             }
