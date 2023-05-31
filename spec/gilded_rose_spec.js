@@ -1,9 +1,9 @@
 const {Shop, Item} = require('../src/gilded_rose.js');
 
 describe("Gilded Rose", function() {
-
+  let items; 
   it("full test", () => {
-    const items = [
+    items = [
       new Item("+5 Dexterity Vest", 10, 20),
       new Item("Aged Brie", 2, 0),
       new Item("Elixir of the Mongoose", 5, 7),
@@ -32,5 +32,25 @@ describe("Gilded Rose", function() {
     const gildedRose = new Shop([new Item("foo", 0, 0)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
+  })
+
+  it("Should add 3 to Backstage passes quality when is between (1 to 5)", function() {
+    let items = [ 
+      new Item("Backstage passes to a TAFKAL80ETC concert", 1, 39),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 2, 39),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 3, 39),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 4, 39),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 39),
+    ];
+    const gildedRose = new Shop(items);
+    gildedRose.updateQuality();
+  
+    // const backstagePasses = gildedRose.items.find(item => item.name === "Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].quality).toBe(42);
+    expect(items[1].quality).toBe(42);
+    expect(items[2].quality).toBe(42);
+    expect(items[3].quality).toBe(42);
+    expect(items[4].quality).toBe(42);
   });
+
 });
